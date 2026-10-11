@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IGCSE Biology Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --ink:#14201C; --mut:#55665F; --line:#D3DDD9;
+  --red:#C8102E; --red-s:#FBE3E7;
+  --ok:#1B7A52; --ok-s:#DBF0E5;
+  --st:#1F5F8B; --st-s:#DDEBF5;
+  --dv:#8A5A00; --dv-s:#FBEBC8;
+  --nw:#B3261E; --nw-s:#FBE0DD;
+  --na:#5F6F69; --na-s:#E6ECE9;
+  --head:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --read:"Literata", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1613; --surface:#16211D; --ink:#E7F0EC; --mut:#9DB1A9; --line:#2A3B35;
+    --red:#FF7A8A; --red-s:#3A1B22;
+    --ok:#5FD39B; --ok-s:#14382A;
+    --st:#7FC0EE; --st-s:#13304A;
+    --dv:#F2B94B; --dv-s:#3A2C0C;
+    --nw:#FF8F85; --nw-s:#3B1B18;
+    --na:#9DB1A9; --na-s:#22302B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1613; --surface:#16211D; --ink:#E7F0EC; --mut:#9DB1A9; --line:#2A3B35;
+  --red:#FF7A8A; --red-s:#3A1B22;
+  --ok:#5FD39B; --ok-s:#14382A;
+  --st:#7FC0EE; --st-s:#13304A;
+  --dv:#F2B94B; --dv-s:#3A2C0C;
+  --nw:#FF8F85; --nw-s:#3B1B18;
+  --na:#9DB1A9; --na-s:#22302B;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--head);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:20px;letter-spacing:-.01em;margin-right:auto;display:flex;align-items:baseline;gap:10px}
+.brand small{font-weight:500;font-size:13px;color:var(--mut)}
+.tabs{display:flex;gap:4px}
+.tab{background:none;border:0;padding:8px 14px;border-radius:999px;font-weight:600;color:var(--mut)}
+.tab[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.who{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--mut)}
+.who b{color:var(--ink);font-weight:600;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linkbtn{background:none;border:0;padding:4px 2px;color:var(--red);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.warn{background:var(--dv-s);color:var(--dv);padding:8px 20px;font-size:14px;text-align:center}
+
+main{padding:28px 0 72px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0;letter-spacing:-.02em}
+h1{font-size:clamp(30px,5vw,48px);font-weight:700}
+h2{font-size:clamp(22px,3vw,30px);font-weight:700}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+.lede{color:var(--mut);font-size:18px;max-width:52ch}
+
+/* buttons */
+.btn{background:var(--ink);color:var(--bg);border:0;padding:12px 20px;border-radius:10px;font-weight:600}
+.btn.red{background:var(--red);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* gate */
+.gate{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:60vh}
+.gate h1{margin-bottom:16px}
+.label{background:var(--surface);border:1.5px dashed var(--line);border-radius:6px;padding:24px;box-shadow:0 1px 0 var(--line)}
+.label h2{font-size:20px;margin-bottom:4px}
+.label .sub{color:var(--mut);font-size:14px;margin-bottom:18px}
+.nameline{display:block;width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;padding:8px 2px;font-size:22px;font-weight:600;border-radius:0}
+.nameline:focus-visible{outline:none;border-bottom-color:var(--red)}
+.label .btn{margin-top:18px;width:100%}
+.saved{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+.saved h3{font-size:14px;color:var(--mut);font-weight:600;margin-bottom:8px}
+.saved .row button{background:var(--na-s);border:0;border-radius:999px;padding:6px 14px;font-weight:600}
+.facts{margin-top:28px;display:flex;gap:28px;flex-wrap:wrap;color:var(--mut);font-size:15px}
+.facts b{display:block;color:var(--ink);font-size:26px;font-weight:700}
+
+/* notes */
+.ngrid{display:grid;grid-template-columns:270px 1fr;gap:36px;align-items:start}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);max-height:calc(100vh - 100px);overflow:auto;padding-right:6px}
+.chl{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-left:3px solid transparent;padding:7px 10px;color:var(--mut);font-size:15px;line-height:1.3}
+.chl .cn{min-width:22px;font-weight:700;color:var(--ink)}
+.chl.on{border-left-color:var(--red);color:var(--ink);background:var(--surface);font-weight:600}
+.chl .rd{margin-left:auto;font-size:12px;color:var(--ok);font-weight:600}
+.chsel{display:none;width:100%;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:16px}
+.search{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:22px}
+.chead{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.chead .big{font-size:56px;font-weight:700;color:var(--red);line-height:1}
+.chmeta{color:var(--mut);margin-bottom:22px}
+details.card{border-left:3px solid var(--line);margin:0 0 10px;background:var(--surface);border-radius:0 8px 8px 0}
+details.card[open]{border-left-color:var(--red)}
+details.card summary{cursor:pointer;padding:13px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details.card summary::-webkit-details-marker{display:none}
+details.card summary::after{content:"+";font-weight:500;color:var(--mut);font-size:20px;line-height:1}
+details.card[open] summary::after{content:"\2212"}
+details.card ul{margin:0;padding:0 18px 14px 36px;font-family:var(--read);line-height:1.65;font-size:16.5px}
+details.card li{margin:3px 0;max-width:68ch}
+.found{color:var(--mut);margin:-8px 0 18px;font-size:14px}
+.rtag{font-size:13px;color:var(--red);font-weight:600;margin:18px 0 8px}
+
+/* practice */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:18px}
+.panel h3{margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--bg);border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:var(--surface);border:0;padding:9px 16px;font-weight:600;color:var(--mut);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.prog{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:10px 0 24px}
+.prog i{display:block;height:100%;background:var(--red);transition:width .25s}
+.qmeta{display:flex;justify-content:space-between;color:var(--mut);font-size:14px;gap:12px;flex-wrap:wrap}
+.qtext{font-size:clamp(20px,3vw,26px);font-weight:600;line-height:1.3;margin:6px 0 22px;max-width:30em}
+.opts{display:grid;gap:10px;max-width:640px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:13px 16px;font-size:16.5px}
+.opt .k{font-weight:700;color:var(--mut);min-width:18px}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--ok-s);border-color:var(--ok)}
+.opt.bad{background:var(--nw-s);border-color:var(--nw)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:20px;max-width:640px;padding:16px 18px;border-radius:10px}
+.fb.good{background:var(--ok-s)} .fb.bad{background:var(--nw-s)}
+.fb b{display:block;margin-bottom:4px}
+.fb p{font-family:var(--read);line-height:1.6}
+.fb .row{margin-top:14px}
+.score{font-size:64px;font-weight:700;line-height:1;color:var(--red)}
+.miss{border-left:3px solid var(--nw);padding:4px 0 4px 14px;margin:14px 0}
+.miss p{font-family:var(--read);color:var(--mut);margin-top:4px}
+
+/* report */
+.rep-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.rep-head .when{color:var(--mut)}
+.summary{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:center;margin-bottom:28px}
+.lvlbox{padding:24px;border-radius:12px}
+.lvlbox .lv{font-size:clamp(34px,5vw,52px);font-weight:700;line-height:1.05;margin:4px 0 10px}
+.lvlbox .nums{display:flex;gap:26px;flex-wrap:wrap;margin-top:14px}
+.lvlbox .nums b{display:block;font-size:24px}
+.lvlbox .nums span{font-size:14px;opacity:.85}
+.radarwrap svg{width:100%;height:auto;display:block}
+.rg{fill:none;stroke:var(--line);stroke-width:1}
+.ra{fill:var(--red);fill-opacity:.16;stroke:var(--red);stroke-width:2.2;stroke-linejoin:round}
+.rd2{fill:var(--red)} .rd2.empty{fill:var(--bg);stroke:var(--mut);stroke-width:1.5}
+.rl{fill:var(--ink);font-size:12.5px;font-weight:600;font-family:var(--head)}
+.rl2{fill:var(--mut);font-size:11.5px;font-weight:500;font-family:var(--head)}
+.sec{margin-top:34px}
+.sec h2{margin-bottom:14px}
+.l-ex{background:var(--ok-s);color:var(--ok)} .l-st{background:var(--st-s);color:var(--st)}
+.l-dv{background:var(--dv-s);color:var(--dv)} .l-nw{background:var(--nw-s);color:var(--nw)}
+.l-na{background:var(--na-s);color:var(--na)}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+.dbars{display:grid;gap:12px;max-width:560px}
+.dbar{display:grid;grid-template-columns:80px 1fr 90px;gap:12px;align-items:center;font-size:15px}
+.dbar .track{height:12px;background:var(--line);border-radius:6px;overflow:hidden}
+.dbar .track i{display:block;height:100%;background:var(--ink)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-weight:600;color:var(--mut);font-size:14px;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums}
+.minibar{display:inline-block;width:70px;height:8px;background:var(--line);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:8px}
+.minibar i{display:block;height:100%;background:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.list{margin:0;padding-left:20px}
+.list li{margin:6px 0;max-width:60ch}
+.rec{border-left:3px solid var(--red);padding:2px 0 2px 14px;margin:12px 0;max-width:64ch}
+.empty{text-align:center;padding:60px 20px}
+.empty h2{margin-bottom:10px}
+.empty p{color:var(--mut);margin-bottom:20px}
+.note{color:var(--mut);font-size:14px;margin-top:10px;max-width:70ch}
+
+@media (max-width:860px){
+  .gate{grid-template-columns:1fr;gap:28px;min-height:0}
+  .ngrid{grid-template-columns:1fr}
+  .side{display:none}
+  .chsel{display:block}
+  .summary,.two{grid-template-columns:1fr}
+  .brand{width:100%}
+}
+@media (max-width:520px){
+  .wrap{padding:0 14px}
+  .dbar{grid-template-columns:62px 1fr 80px}
+  .chead .big{font-size:42px}
+}
+@media (prefers-reduced-motion: reduce){ .prog i{transition:none} }
+
+@media print{
+  .top,.noprint,.warn{display:none !important}
+  body{background:#fff;color:#000}
+  main{padding:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tbl{overflow:visible}
+  .sec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="warn"></div>
+<header class="top" id="top"></header>
+<main><div class="wrap" id="app"></div></main>
+
+<script>
+/* ============ DATA ============ */
+var THEMES = [
+  {n:"Cells and molecules", ids:[1,2,3,4,5]},
+  {n:"Plants", ids:[6,8]},
+  {n:"Human body systems", ids:[7,9,11,12,13]},
+  {n:"Health and control", ids:[10,14,15]},
+  {n:"Reproduction and genetics", ids:[16,17,18]},
+  {n:"Ecology and biotech", ids:[19,20,21]},
+  {n:"Exam skills", ids:[22]}
+];
+
+var CH = [
+{id:1,s:"Classification",t:"Characteristics and classification of living organisms",notes:`
+Name the seven characteristics of living organisms => Movement | Respiration | Sensitivity | Growth | Reproduction | Excretion | Nutrition
+Define respiration, excretion and growth => Respiration: chemical reactions in cells that break down nutrient molecules and release energy for metabolism | Excretion: removal of waste products of metabolism and substances in excess of requirements | Growth: permanent increase in size and dry mass
+What is the binomial system? => Internationally agreed system of two-part scientific names | Genus first, then species, e.g. Canis lupus (Canis = genus, lupus = species)
+What is a species? => A group of organisms that can reproduce to produce fertile offspring
+Name the five kingdoms => Animals | Plants | Fungi | Prokaryotes | Protoctists
+How are animals and plants different? => Animals: multicellular, cells have a nucleus, no cell walls, feed on organic substances made by other organisms, internal digestion | Plants: multicellular, nucleus, chloroplasts in photosynthesising cells, cellulose cell wall, make food by photosynthesis
+Give the main features of each vertebrate group => Mammals: fur, mammary glands, placenta, external ears (pinna) | Birds: wings, feathers, beak, scales on legs and feet | Fish: scales and fins, gills, lateral line | Reptiles: dry scaly skin, soft-shelled eggs laid on land | Amphibians: smooth moist skin; larvae live in water with gills, adults usually live on land with lungs
+Give the main features of each arthropod group => Insects: 3 body segments, 3 pairs of legs, antennae, compound eyes | Arachnids: 2 body segments, 4 pairs of legs, simple eyes, no antennae | Crustaceans: more than 4 pairs of jointed limbs, 2 pairs of antennae, gills under shell | Myriapods: many body segments, at least one pair of legs on each, antennae, hard exoskeleton
+Compare ferns and flowering plants => Ferns: leaves called fronds carry sporangia that release spores; underground rhizomes | Flowering plants (angiosperms): produce flowers and fruit, reproduce through pollen and ovules | Monocotyledons: petals in multiples of 3, parallel leaf veins | Dicotyledons: petals in multiples of 4 or 5, branched (net) veins
+Compare bacteria, protoctists and fungi => Bacteria: unicellular, cell wall, no true nucleus, circular DNA and plasmids (e.g. Pneumococcus) | Protoctists: mostly unicellular; some animal-like (Amoeba), some plant-like with chloroplasts (Chlorella) | Fungi: cell wall of chitin, bodies made of hyphae with many nuclei, saprotrophic nutrition (external digestion)
+Why is a virus non-living? => Does not respire, excrete or move | Needs a host cell to replicate | Made of a protein coat around DNA or RNA
+How can DNA be used to classify organisms? => Compare base sequences in DNA or amino acid sequences in proteins | The more recent the common ancestor, the more similar the sequences
+How do you use a dichotomous key? => Work through paired statements (a or b) | Each choice sends you to another number or to a name | Follow observable features until one organism is left
+`},
+{id:2,s:"Cells",t:"Organisation of the organism",notes:`
+What do all living cells contain? => Cytoplasm | Cell membrane | DNA as genetic material | Ribosomes for protein synthesis | Enzymes for respiration
+Give the function of each animal cell part => Nucleus: contains DNA and controls the cell | Cytoplasm: contains water, dissolved substances and the other organelles | Cell membrane: controls what enters and leaves | Mitochondria: site of aerobic respiration | Ribosomes: site of protein synthesis
+What extra structures do plant cells have? => Chloroplasts: packed with chlorophyll for photosynthesis | Vacuole filled with cell sap: gives turgor pressure to keep shape | Cellulose cell wall: protects and supports the cell
+What is special about bacterial cells? => Cell wall made of peptidoglycan | Circular DNA (nucleoid) not in a nucleus | Plasmids: small circular DNA, often carrying antibiotic resistance genes | Ribosomes and cytoplasm
+How are carbohydrates stored? => Animals: as glycogen | Plants: as starch | Fungi: as glycogen
+Define tissue, organ and organ system => Tissue: group of similar cells doing the same job | Organ: group of tissues doing the same job | Organ system: group of organs working together | Organelles are the parts inside a cell
+Name the seven human organ systems => Reproductive | Circulatory | Digestive | Gas exchange | Nervous | Excretory | Endocrine
+How are specialised animal cells adapted? => Ciliated cell: cilia push mucus towards the mouth | Red blood cell: biconcave disc, no nucleus, packed with haemoglobin | Neurone: long axon, fatty insulating sheath, branched endings | Sperm: flagellum, acrosome with enzymes, mitochondria, haploid nucleus | Egg: food stores, haploid nucleus, jelly coat changes at fertilisation
+How are specialised plant cells adapted? => Root hair cell: long extension gives a large surface area to absorb water (osmosis) and mineral ions (active transport) | Palisade mesophyll: tall thin cells packed together, many chloroplasts to maximise photosynthesis
+How do you calculate magnification? => Magnification = image size ÷ actual size | Convert to the same units first (1 mm = 1000 µm)
+`},
+{id:3,s:"Movement in cells",t:"Movement into and out of cells",notes:`
+Define diffusion => Net movement of particles from high concentration to low concentration, down a concentration gradient, due to random movement | Passive: needs no energy from the cell
+Which factors increase the rate of diffusion? => Steeper concentration gradient | Larger surface area to volume ratio | Shorter diffusion distance | Higher temperature (more kinetic energy)
+Give examples of diffusion in organisms => Oxygen from alveoli into blood | Glucose and amino acids from the small intestine into blood | CO<sub>2</sub> from the air into leaf cells
+Define osmosis and water potential => Osmosis: net movement of water molecules from a region of high water potential to low water potential through a partially permeable membrane | Dilute solution = high water potential; concentrated solution = low water potential
+What happens to cells in different solutions? => Plant cell in pure water: swells and becomes turgid; the cell wall prevents bursting | Plant cell in salty solution: loses water, becomes flaccid; the membrane may pull away (plasmolysis) | Animal cell in pure water: bursts because there is no cell wall
+Define active transport => Movement of particles against a concentration gradient (low to high concentration) using energy from respiration | Uses carrier proteins in the membrane | e.g. mineral ions into root hair cells
+How do you investigate osmosis using potato? => Cut equal-sized cylinders and measure their initial mass | Place in tubes of different salt concentration | After 30 minutes dry and reweigh | Calculate percentage change in mass, repeat, plot a graph | Where the line crosses zero, water potential inside equals outside
+Why is water important to living things? => Solvent for reactions in the cytoplasm | Transports dissolved substances (digested food, urea)
+`},
+{id:4,s:"Molecules",t:"Biological molecules",notes:`
+Which elements are in each biological molecule? => Carbohydrates: carbon, hydrogen, oxygen | Lipids: carbon, hydrogen, oxygen | Proteins: carbon, hydrogen, oxygen, nitrogen and sometimes sulfur
+How are the large molecules built? => Starch, glycogen and cellulose: many glucose molecules joined together | Proteins: long chains of amino acids (20 different types) | Lipids: 3 fatty acids + 1 glycerol; oils are plant lipids that are liquid at room temperature
+Describe the food tests => Starch: add iodine, brown turns blue-black | Reducing sugar: heat with Benedict's solution, blue → green → yellow → brick red | Protein: add Biuret reagent, blue turns purple | Lipid: mix with ethanol, then add water, milky emulsion forms | Vitamin C: DCPIP changes from dark blue to colourless
+How can you compare vitamin C concentration? => Add the sample drop by drop to DCPIP | Fewer drops needed to turn it colourless = stronger vitamin C solution
+Describe the structure of DNA => Two strands coiled into a double helix | Held together by pairs of bases: A with T, C with G
+`},
+{id:5,s:"Enzymes",t:"Enzymes",notes:`
+What is an enzyme? => A protein that acts as a biological catalyst | Speeds up metabolic reactions and is not used up
+Define catalyst and metabolism => Catalyst: a substance that increases the rate of a reaction without being changed or used up | Metabolism: all the chemical reactions taking place in the body
+Key enzyme terms => Substrate: the molecule the enzyme acts on | Active site: the region where the substrate binds | Optimum: temperature or pH where activity is fastest | Denature: the active site changes shape so the substrate no longer fits
+How does an enzyme work? => The active site is complementary to the substrate | Substrate binds, forming an enzyme-substrate complex | Product is released | Each enzyme is specific to one substrate
+How does temperature affect enzymes? => Below the optimum: rate rises, more kinetic energy and more effective collisions | At the optimum: fastest rate | Above the optimum: the enzyme denatures and the rate falls rapidly | Too cold: low kinetic energy, so fewer collisions
+How does pH affect enzymes? => Activity is highest at the optimum pH | Above or below the optimum the 3D shape of the enzyme changes | The active site no longer fits the substrate, so the enzyme is denatured
+Why must body temperature be controlled? => Too high: enzymes denature | Too low: reactions are too slow
+`},
+{id:6,s:"Plant nutrition",t:"Plant nutrition",notes:`
+Write the equation for photosynthesis => Carbon dioxide + water → glucose + oxygen (needs light and chlorophyll) | 6CO<sub>2</sub> + 6H<sub>2</sub>O → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub>
+What does chlorophyll do? => Green pigment found in chloroplasts | Absorbs red and blue light and transfers light energy to chemical energy | Reflects green light, so leaves look green
+What happens to glucose made in photosynthesis? => Used in respiration to release energy | Stored as starch (insoluble, so it does not affect osmosis) | Cellulose for cell walls | Sucrose for transport in the phloem | Nectar to attract insects | Combined with nitrate to make amino acids and proteins
+Why do plants need nitrate and magnesium? => Nitrate: makes amino acids, proteins and DNA; deficiency causes stunted growth | Magnesium: makes chlorophyll; deficiency causes yellow leaves
+How do you test a leaf for starch? => Dip the leaf in boiling water for about 20 seconds (stops enzyme activity) | Boil it in ethanol in a water bath to remove chlorophyll | Wash in cold water | Add iodine: blue-black means starch is present
+What safety rules apply when heating ethanol? => Ethanol is flammable, so never use a naked flame; use a hot water bath | Use forceps or tongs to protect skin
+What are the limiting factors of photosynthesis? => Light intensity | Carbon dioxide concentration | Temperature | Rate rises until another factor becomes limiting (is in shortest supply)
+How do you investigate light intensity and photosynthesis? => Use pondweed (Elodea or Cabomba) in water | Move a lamp to different distances (independent variable) | Count oxygen bubbles per minute (dependent variable) | Control species, number of leaves, temperature, CO<sub>2</sub> (sodium hydrogencarbonate) and lamp power
+What does hydrogencarbonate indicator show? => Red/orange: normal atmospheric CO<sub>2</sub> | Yellow: high CO<sub>2</sub> | Purple: low CO<sub>2</sub> | In bright light it turns purple because photosynthesis uses CO<sub>2</sub> faster than respiration makes it
+How is a leaf adapted for photosynthesis? => Waxy cuticle reduces water loss | Transparent upper epidermis lets light in | Palisade layer packed with chloroplasts | Air spaces in spongy mesophyll let gases diffuse | Stomata and guard cells control gas exchange | Thin and broad for a large surface area
+`},
+{id:7,s:"Human nutrition",t:"Human nutrition",notes:`
+What is a balanced diet? => Contains all the nutrients in the correct amounts needed for life processes
+Which nutrients prevent which deficiency diseases? => Protein: growth and repair; lack causes kwashiorkor | Vitamin C: lack causes scurvy (bleeding gums) | Vitamin D and calcium: strong bones and teeth; lack causes rickets | Iron: makes haemoglobin; lack causes anaemia | Fibre: prevents constipation | Water: about 70% of the body
+Define ingestion, digestion, absorption, assimilation, egestion => Ingestion: taking food and drink into the body | Digestion: breakdown of large insoluble molecules into small soluble molecules | Absorption: movement of nutrients from the intestine into the blood | Assimilation: uptake and use of nutrients by cells | Egestion: removal of faeces through the anus
+Compare physical and chemical digestion => Physical: breaking food into smaller pieces without chemical change (chewing, stomach churning, bile emulsifying fat); increases surface area | Chemical: enzymes break large insoluble molecules into small soluble ones
+Which enzymes digest which food? => Amylase (salivary glands, pancreas): starch → maltose | Maltase (small intestine lining): maltose → glucose | Proteases: pepsin in the stomach (acidic pH), trypsin in the small intestine (neutral pH): protein → amino acids | Lipase (pancreas): fats → fatty acids and glycerol
+What are the roles of stomach acid and bile? => Hydrochloric acid kills bacteria and gives the optimum pH for pepsin; it denatures amylase, so no starch digestion in the stomach | Bile is made in the liver, stored in the gall bladder and released into the small intestine | Bile is alkaline: it neutralises stomach acid | Bile emulsifies fats into droplets with a larger surface area
+What do the digestive organs do? => Mouth: teeth chew food into a bolus | Oesophagus: moves food by peristalsis | Stomach: churns food with acid, forms chyme | Duodenum: mixes food with bile and pancreatic juice | Ileum: absorbs digested food | Colon: reabsorbs water | Rectum: stores faeces
+How is the small intestine adapted for absorption? => Villi and microvilli give a large surface area | Thin wall gives a short diffusion distance | Many capillaries carry nutrients away, keeping a steep concentration gradient | Lacteal absorbs fatty acids and glycerol
+Types of teeth and tooth structure => Incisors cut, canines hold and cut, premolars and molars crush and grind | Enamel: hardest substance made by animals | Dentine: bone-like layer | Pulp: nerves and blood vessels | Cement and root anchor the tooth in the gum
+`},
+{id:8,s:"Plant transport",t:"Transport in plants",notes:`
+Compare xylem and phloem => Xylem: carries water and mineral ions from roots to leaves; dead cells with lignin walls and no cross walls; also supports the plant | Phloem: carries sucrose and amino acids up and down the plant
+How are root hair cells adapted? => Long extension gives a large surface area | Absorbs water by osmosis | Absorbs mineral ions by active transport
+What is the pathway of water through a plant? => Root hair cell → root cortex cells → xylem → mesophyll cells in the leaf → evaporates and leaves through the stomata
+Define transpiration and explain the transpiration stream => Transpiration: loss of water vapour from leaves | Water evaporates from mesophyll cells into air spaces, then diffuses out through the stomata | The loss causes transpiration pull | Cohesion (hydrogen bonds between water molecules) holds the water column together
+Why is transpiration useful? => Transports mineral ions | Keeps cells turgid | Cools the plant | Supplies water for photosynthesis
+Which factors change the transpiration rate? => Increase: hot, dry air (steeper gradient), windy (removes water vapour), bright light (stomata open) | Decrease: cold, humid, still air
+How does a potometer work? => Measures water uptake by a cut shoot | Cut the shoot under water so air does not enter the xylem | Dry the leaves, make it airtight, form one air bubble | Rate = distance moved by the bubble ÷ time | Control temperature, air flow and water supply
+Define translocation, source and sink => Translocation: movement of sucrose and amino acids in the phloem | Source: part that releases sucrose (e.g. leaves in summer) | Sink: part that uses or stores it (e.g. roots, growing shoots, fruits)
+What is wilting? => Cells become flaccid when more water is lost from the leaves than taken in by the roots | Turgor pressure can no longer support the plant
+`},
+{id:9,s:"Animal transport",t:"Transport in animals",notes:`
+Compare single and double circulation => Single (fish): blood passes through the heart once per circuit; pressure is too low for kidney function | Double (mammals): blood passes through the heart twice, once to the lungs (pulmonary) and once to the body (systemic) | Advantage: pressure is restored after the lungs, so tissues get oxygen and glucose faster
+Follow blood through the heart => Vena cava → right atrium → right ventricle → pulmonary artery → lungs → pulmonary vein → left atrium → left ventricle → aorta → body
+Why do heart walls differ in thickness? => Ventricles are thicker than atria: they pump blood further | The left ventricle is thicker than the right: it pumps around the whole body and needs higher pressure
+What do the septum and valves do? => Septum separates oxygenated and deoxygenated blood; a hole mixes them so tissues get too little oxygen | Atrioventricular valves stop backflow into the atria | Semilunar valves stop backflow into the ventricles from the aorta and pulmonary artery
+Compare arteries, veins and capillaries => Arteries: thick muscular and elastic walls, narrow lumen, carry blood away from the heart at high pressure | Veins: thin walls, wide lumen, valves, return blood at low pressure | Capillaries: walls one cell thick, narrow, short diffusion distance for exchange
+Name the main blood vessels => Vena cava, pulmonary artery, pulmonary vein, aorta | Renal artery and renal vein (kidney) | Hepatic artery and hepatic vein (liver) | Hepatic portal vein: carries digested food from the intestine to the liver
+What are the blood components and their functions? => Red blood cells: carry oxygen as oxyhaemoglobin | White blood cells: phagocytosis and antibody production | Platelets: help blood clot at a wound | Plasma: transports cells, ions, nutrients, urea, hormones and CO<sub>2</sub>
+How does blood clot? => Platelets collect at the wound | Soluble fibrinogen changes to insoluble fibrin | Fibrin forms a mesh, reducing blood loss and blocking pathogens
+What causes coronary heart disease? => Cholesterol blocks the coronary arteries, so less oxygen reaches the heart muscle | More anaerobic respiration, lactic acid builds up, causing a heart attack | Risk factors: genes, high blood pressure, saturated fat diet, smoking, stress, lack of exercise, age, sex
+How does exercise affect the heart? => Heart rate rises because muscles need more oxygen and glucose | After exercise the rate stays high to remove lactic acid (oxygen debt)
+`},
+{id:10,s:"Disease & immunity",t:"Diseases and immunity",notes:`
+Define pathogen and transmissible disease => Pathogen: disease-causing microorganism | Transmissible disease: the pathogen can pass from one host to another
+How are pathogens transmitted? => Direct contact: blood or body fluids | Indirect: contaminated surfaces, food, water, air, animals
+How is the spread of disease controlled? => Clean water supply: prevents cholera | Hygienic food preparation: prevents food poisoning | Good personal hygiene | Waste disposal | Sewage treatment
+What are the body's defences? => Skin acts as a barrier | Nose hairs trap pathogens | Mucus from goblet cells traps pathogens; cilia move it up | Stomach acid kills pathogens | Phagocytes engulf pathogens | Lymphocytes make antibodies
+What are antigens and antibodies? => Antigen: protein on the surface of a cell or pathogen, recognised as non-self | Antibody: protein with a shape complementary to one antigen | Antibodies make bacteria clump, mark them for phagocytes, neutralise toxins or burst them
+What are active immunity and vaccination? => Active immunity: your own lymphocytes make antibodies after infection or vaccination | Vaccine: a weakened pathogen or its antigens triggers a response | Memory cells give a faster, stronger response next time | Herd immunity protects people who cannot be vaccinated
+What is passive immunity? => Short-term protection: antibodies come from another person | No memory cells are made | e.g. antibodies cross the placenta or pass in breast milk
+What are cholera and diarrhoea? => Cholera: bacteria produce a toxin; chloride ions are secreted into the gut and water follows by osmosis | Causes severe diarrhoea and dehydration; spread by contaminated water | Treatment: oral rehydration therapy (water with mineral salts)
+`},
+{id:11,s:"Gas exchange",t:"Gas exchange in humans",notes:`
+What are the features of gas exchange surfaces? => Large surface area | Thin, so a short diffusion distance | Good blood supply | Good ventilation | Moist so gases can dissolve
+How are alveoli adapted? => Huge total surface area | Walls one cell thick | Moist lining | Capillary network removes oxygen and brings CO<sub>2</sub>, keeping the gradient steep | Breathing refreshes the air
+Describe inhalation => External intercostal muscles contract, ribs move up and out | Diaphragm contracts and flattens | Thorax volume increases, pressure decreases | Air is drawn into the lungs
+Describe exhalation => Internal intercostal muscles contract, ribs move down and in | Diaphragm relaxes and domes | Thorax volume decreases, pressure rises | Air is forced out
+How does inspired air differ from expired air? => Oxygen: 21% in, about 16–18% out | Carbon dioxide: 0.04% in, about 4% out | Water vapour: more in expired air | Nitrogen is unchanged (78%)
+How do you test for carbon dioxide? => Bubble the gas through limewater | It turns milky or cloudy
+How does exercise change breathing? => More respiration makes more CO<sub>2</sub> | Receptors in the medulla of the brain detect the rise | Breathing rate and depth increase
+How is the airway protected? => Goblet cells make mucus that traps dust and microbes | Cilia move the mucus up to the throat to be swallowed | Cartilage rings keep the trachea open
+`},
+{id:12,s:"Respiration",t:"Respiration",notes:`
+How do living things use energy? => Muscle contraction | Protein synthesis | Cell division | Active transport | Growth | Nerve impulses | Keeping body temperature constant
+Describe aerobic respiration => Chemical reactions in cells using oxygen to release energy from glucose | Takes place in mitochondria | Glucose + oxygen → carbon dioxide + water | C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> → 6CO<sub>2</sub> + 6H<sub>2</sub>O
+Describe anaerobic respiration => Releases energy from glucose without oxygen | Releases much less energy per glucose molecule | Muscles: glucose → lactic acid | Yeast: glucose → ethanol + carbon dioxide
+What is an oxygen debt? => The extra oxygen needed after exercise to break down lactic acid | Breathing stays fast and deep and the heart rate stays high until it is repaid | Lactic acid is broken down by aerobic respiration in the liver
+How do you investigate yeast respiration and temperature? => Mix yeast with glucose solution in a tube | Place in water baths at different temperatures | Count CO<sub>2</sub> bubbles per minute through a delivery tube | Repeat and take a mean, plot a graph | Rate rises up to about 40 °C, then enzymes denature
+`},
+{id:13,s:"Excretion",t:"Excretion in humans",notes:`
+What do the lungs, kidneys and liver do in excretion? => Lungs excrete carbon dioxide | Kidneys excrete urea, excess water and ions | Liver forms urea from excess amino acids by deamination | Faeces are egested, not excreted
+What is deamination? => Removal of the nitrogen-containing part of amino acids | Forms urea
+What does the glomerulus do? => Ultrafiltration: small molecules (water, glucose, ions, urea) pass into the Bowman's capsule | Proteins and blood cells stay in the blood because they are too large | High pressure because the vessel entering is wider than the one leaving
+What does the nephron do after filtration? => Selective reabsorption of all glucose (active transport), most water and some salts | Urea, excess water and ions stay in the nephron and form urine | Urine volume and concentration vary with water intake, temperature and exercise
+Why is excretion needed? => Urea is toxic if it builds up in the blood
+`},
+{id:14,s:"Coordination",t:"Coordination and response",notes:`
+Describe the nervous system => CNS: brain and spinal cord | PNS: nerves outside the CNS | A nerve impulse is an electrical signal passing along neurones
+Describe a reflex arc => Stimulus → receptor → sensory neurone → relay neurone → motor neurone → effector → response | Reflex action: automatic and rapid | Effector: a muscle (contracts) or a gland (secretes)
+How does a synapse work? => An impulse arrives at the endplate | Vesicles release neurotransmitter into the synaptic gap | Neurotransmitter diffuses across and binds to receptors on the next neurone | A new impulse starts | Synapses make impulses travel one way only
+What do the parts of the eye do? => Cornea refracts light | Iris controls how much light enters the pupil | Lens focuses light on the retina | Retina contains rods (dim light) and cones (colour) | Optic nerve carries impulses to the brain | Blind spot: no receptor cells
+How does the pupil respond to light? => Bright light: circular muscles contract, radial muscles relax, pupil constricts, protects the retina | Dim light: circular muscles relax, radial muscles contract, pupil dilates, more light enters
+How does the eye focus? => Near object: ciliary muscle contracts, suspensory ligaments slacken, lens becomes fat, light refracted strongly | Far object: ciliary muscle relaxes, ligaments tighten, lens becomes thin | The fovea has the most cones and gives the greatest visual acuity
+What are hormones? => Chemicals made by endocrine glands, carried in the blood, that alter target organs | Hormonal responses: slower, longer lasting, widespread | Nervous responses: fast, short-lived, localised
+What does adrenaline do? => Prepares the body for fight or flight | Increases heart rate and breathing rate | Dilates the pupils | Converts glycogen to glucose, raising blood glucose
+What is homeostasis? => Maintaining a constant internal environment | Negative feedback returns conditions to the set point
+How is blood glucose controlled? => High glucose: pancreas releases insulin, liver turns glucose into glycogen, level falls | Low glucose: pancreas releases glucagon, glycogen is converted to glucose, level rises | Type 1 diabetes: the body cannot make insulin; treated with insulin injections and monitoring
+How does the skin control temperature? => Too hot: hairs lie flat, vasodilation, sweat evaporates | Too cold: hairs stand up, vasoconstriction, shivering releases heat
+What are tropisms? => Tropism: growth response to a directional stimulus | Auxins made in the shoot tip move down and cause cell elongation on the shaded or lower side | Shoots: positive phototropism, negative gravitropism | Roots: negative phototropism, positive gravitropism
+`},
+{id:15,s:"Drugs",t:"Drugs",notes:`
+What is a drug? => A substance taken into the body that modifies or affects chemical reactions
+What are antibiotics? => Drugs used to treat bacterial infections | They do not affect viruses: viruses live inside host cells and do not use bacterial processes
+How does antibiotic resistance develop? => Random mutation makes some bacteria resistant | The antibiotic kills non-resistant bacteria; resistant ones survive and reproduce | Resistance alleles spread through the population (natural selection)
+How can resistance be reduced? => Use antibiotics only when essential | Complete the full course | Use specific antibiotics for specific bacteria | Keep hospital hygiene high and limit use in farming
+`},
+{id:16,s:"Reproduction",t:"Reproduction",notes:`
+Compare asexual and sexual reproduction => Asexual: one parent, no gametes, offspring are clones; suits stable environments | Sexual: two parents, gametes fuse at fertilisation, offspring vary; helps adaptation in changing environments
+Give examples of asexual reproduction in plants => Natural: strawberry runners, tubers | Artificial: cuttings dipped in rooting powder | Cuttings give a uniform crop and are faster than seeds
+What are the parts of a flower and their functions? => Sepal protects the bud | Petals attract insects | Anther makes pollen containing the male gamete | Stigma receives pollen | Ovary contains ovules with the female gamete
+Compare insect-pollinated and wind-pollinated flowers => Insect: large bright petals, nectar, scent, sticky pollen, stiff anthers, flat or lobed stigma | Wind: small dull petals, feathery stigma, loose dangling anthers, light smooth pollen in large amounts
+Describe pollination and fertilisation in plants => Pollination: transfer of pollen from anther to stigma | Self-pollination: same plant (less variation); cross-pollination: different plant (more variation) | The pollen tube grows down the style to the micropyle and the male nucleus fuses with the ovule nucleus
+What conditions are needed for germination? => Water activates enzymes | Oxygen for respiration | Warm temperature for enzyme reactions | Radicle grows down, plumule grows up
+Describe the male reproductive system => Testis: makes sperm and testosterone | Scrotum: keeps sperm cooler than body temperature | Sperm duct and prostate gland: fluids to make semen | Urethra: carries urine or semen | Penis: delivers semen into the vagina
+Describe the female reproductive system => Ovary: contains and releases eggs | Oviduct: ciliated tube, where fertilisation happens | Uterus: lining where the embryo implants | Cervix: ring of muscle | Vagina: receives the penis
+Compare sperm and egg cells => Sperm: tiny, motile with a flagellum, millions released, acrosome enzymes | Egg: large, immobile, food stores, one released per month, jelly coat hardens to block extra sperm
+What do the pregnancy structures do? => Placenta: exchange of oxygen, nutrients, antibodies, CO<sub>2</sub> and urea; keeps maternal and fetal blood separate | Umbilical cord: links fetus to placenta | Amniotic fluid: cushions the fetus | Toxins such as nicotine can cross the placenta
+Which hormones control reproduction? => Testosterone (testes): sperm production and male secondary sexual characteristics | Oestrogen (ovaries): thickens the uterus lining and female secondary characteristics | Progesterone: maintains the lining | FSH (pituitary): matures eggs | LH (pituitary): triggers ovulation around day 14
+Describe the menstrual cycle => About 28 days; menstruation lasts about 5–7 days | Oestrogen rebuilds the lining | LH triggers ovulation on about day 14 | The corpus luteum makes progesterone | If there is no fertilisation, progesterone falls and the lining breaks down
+What are STIs and HIV? => STI: infection passed on through sexual contact | HIV: a pathogen that can lead to AIDS; reduces lymphocytes and antibody production | Spread by unprotected sex, infected blood, mother to child, sharing needles | Control: condoms, testing, contact tracing, education
+`},
+{id:17,s:"Inheritance",t:"Inheritance",notes:`
+Define chromosome, gene and allele => Chromosome: thread-like structure of DNA carrying genes | Gene: length of DNA that codes for a protein | Allele: alternative form of the same gene
+How is sex inherited? => Females are XX, males are XY | The mother always gives an X; the father gives X or Y | 50:50 chance of a boy or a girl
+How is a protein made? => The gene stays in the nucleus | mRNA copies the gene and moves to the cytoplasm | A ribosome assembles amino acids in the order set by the mRNA bases
+Compare DNA and RNA => DNA: deoxyribose, bases A T C G, double stranded, long | RNA: ribose, bases A U C G, single stranded, short
+What are haploid and diploid nuclei? => Haploid: one set of chromosomes (gametes) | Diploid: two sets (body cells), 23 pairs in humans
+Compare mitosis and meiosis => Mitosis: 1 division, 2 identical diploid cells; growth, repair, asexual reproduction | Meiosis: 2 divisions, 4 genetically different haploid cells; makes gametes | Stem cells divide by mitosis and can become specialised
+What are the key genetics terms? => Genotype: the alleles an organism has | Phenotype: its observable features | Homozygous: two identical alleles | Heterozygous: two different alleles | Dominant: expressed when present | Recessive: expressed only if no dominant allele is present | Carrier: heterozygous for a recessive disease allele, no symptoms
+How do you work out a genetic cross? => Write the parents' genotypes | Write the possible gametes | Complete the Punnett square | Read the ratios, e.g. Cc × Cc gives 25% cc
+What is a test cross? => Cross an organism showing the dominant phenotype with a homozygous recessive | Any recessive offspring means the unknown parent was heterozygous
+What is codominance? => Both alleles are expressed in the phenotype | I<sup>A</sup> and I<sup>B</sup> are codominant, I<sup>O</sup> is recessive | Blood group AB has genotype I<sup>A</sup>I<sup>B</sup>
+How does sex-linked inheritance work? => The gene is on the X chromosome, e.g. red-green colour blindness | More common in males: they have only one X and the Y is shorter | Males inherit it from their mother | A carrier mother and normal father: 50% of sons are affected
+`},
+{id:18,s:"Variation & selection",t:"Variation and selection",notes:`
+Compare continuous and discontinuous variation => Continuous: any value within a range, affected by genes and environment (height, mass) | Discontinuous: only certain values, usually genes alone (blood group, tongue rolling)
+How does genetic variation arise? => Mutation: random change in the DNA base sequence, makes new alleles | Meiosis | Random mating and random fertilisation | Mutation rate raised by ionising radiation and some chemicals
+What is natural selection? => Variation exists in a population | More offspring are born than can survive, so there is competition | Better-adapted individuals survive and reproduce | They pass on their alleles | Repeats over many generations | Evolution: change in adaptive features of a population over time
+What are adaptive features? => Inherited features that help an organism survive and reproduce | Fitness: the probability of surviving and reproducing
+How are a camel and a polar bear adapted? => Camel: large feet, long eyelashes, fat in the hump, thin fur, large surface area to volume ratio | Polar bear: thick fur and fat layer, small ears, white camouflage, small surface area to volume ratio
+Compare hydrophytes and xerophytes => Hydrophyte (water lily): little lignin, very thin cuticle, stomata on the upper surface | Xerophyte (cactus): spines, thick cuticle, water-storing stem, deep roots
+What is selective breeding? => Humans choose parents with desirable features | Breed them, select the best offspring and repeat over generations | Faster than natural selection; humans, not survival, choose | Examples: high milk yield, disease-resistant crops
+`},
+{id:19,s:"Ecosystems",t:"Organisms and their environment",notes:`
+How does energy flow through living things? => Light energy from the Sun is converted to chemical energy by producers | Passes along food chains as organisms eat each other | Lost to the environment through respiration, excretion and decomposition
+What are food chains and food webs? => A food chain starts with a producer; arrows show the direction of energy transfer | A food web is a network of food chains | Trophic level: position in the chain | Consumers: herbivores, carnivores | Decomposers feed on dead matter and recycle nutrients
+What are the pyramids in ecology? => Numbers: organisms at each level (can be inverted) | Biomass: dry mass at each level, always pyramid-shaped | Energy: energy per unit area per unit time
+Why is only about 10% of energy passed on? => Not all of an organism is eaten and some parts are indigestible | Energy lost in excretion | Lost as heat in respiration | Used for movement and keeping warm | So food chains rarely have more than 5 levels and eating plants is more efficient than eating livestock
+Describe the carbon cycle => Photosynthesis removes CO<sub>2</sub> from the air | Respiration returns CO<sub>2</sub> | Feeding passes carbon along the food chain | Decomposition by microorganisms | Burning fossil fuels releases CO<sub>2</sub>
+Describe the nitrogen cycle => Nitrogen-fixing bacteria (root nodules) and lightning turn nitrogen gas into nitrates | Plants take up nitrates by active transport to make amino acids | Decomposers produce ammonium ions | Nitrifying bacteria: ammonium → nitrite → nitrate | Denitrifying bacteria turn nitrate into nitrogen gas
+Define population terms => Population: one species in one area | Community: all populations in an ecosystem | Ecosystem: a community and its environment | Biotic: living factors | Abiotic: non-living factors
+How do populations grow? => Sigmoid curve: lag, log (exponential), stationary at carrying capacity, then death phase | Factors: food supply, competition, predation, disease | Carrying capacity: the maximum population an environment can support
+`},
+{id:20,s:"Human impact",t:"Human influences on ecosystems",notes:`
+How has technology increased food production? => Machinery | Chemical fertilisers | Insecticides | Herbicides | Selective breeding
+What are monoculture and intensive farming? => Monoculture: one type of crop; easier and more profitable but loses habitats and genetic variety and lets disease spread | Intensive livestock farming: many animals in small spaces, high-energy feed, antibiotics | Benefit: food security | Drawbacks: deforestation, welfare issues, disease spread
+Why are habitats destroyed? => Space for crops, livestock and housing | Extraction of natural resources (wood, metals, stone) | Pollution of fresh and marine water
+What are the effects of deforestation? => Loss of biodiversity and extinction | Soil erosion and flooding | Less photosynthesis, more CO<sub>2</sub> | Altered food webs
+What is eutrophication? => Fertiliser or sewage is washed into water | Algal bloom blocks light, plants die | Decomposers multiply and use up dissolved oxygen | Fish and other aquatic life die
+What problems do plastics cause? => They do not break down | Animals swallow them and are injured or die | They break into toxic pieces that enter food chains | Block water flow, harm soil, release toxins when buried or burned
+How does the enhanced greenhouse effect cause global warming? => CO<sub>2</sub> and methane trap infrared radiation | Burning fossil fuels, cattle, rice paddies and deforestation raise levels | Effects: ice melt, rising sea levels, flooding, habitat loss, extreme weather
+How can resources be conserved? => Sustainable resource: produced as fast as it is removed | Forests: education, protected areas, quotas, replanting | Fish: quotas, closed seasons, net mesh size, monitoring
+Why do species become endangered? => Climate change, habitat destruction, hunting, pollution, introduced species | Conservation: monitoring, protection, education, captive breeding, seed banks
+What are AI and IVF? => AI (artificial insemination): sperm placed into the uterus near ovulation | IVF: eggs fertilised outside the body, embryo placed in the uterus | Used in captive breeding, e.g. giant panda | Small populations risk inbreeding and low genetic variation
+`},
+{id:21,s:"Biotechnology",t:"Biotechnology and genetic modification",notes:`
+Why are bacteria useful in biotechnology? => Reproduce rapidly | Make complex molecules | Few ethical concerns | Contain plasmids
+How is yeast used? => Biofuel: anaerobic respiration makes ethanol | Bread: CO<sub>2</sub> bubbles make the dough rise
+How is pectinase used? => Breaks down pectin in plant cell walls | More juice is extracted and it is clearer
+How do biological washing powders work? => Lipase and protease break down fat and protein stains | Work at lower temperatures, saving energy | Enzymes denature at high temperature
+How is lactose-free milk made? => Lactase is immobilised on beads or fibres | Milk passes over it and lactose is broken down | Immobilising lets the enzyme be reused, keeps it out of the milk and makes it more stable | Milk is heated to kill bacteria, then cooled to 20 °C before lactase is added
+How does a fermenter work? => A vessel for growing microorganisms in large quantities | Controls nutrients, pH, oxygen supply, temperature (cooling jacket), agitation and waste removal
+How is penicillin made? => Penicillium fungus makes it as its growth slows | Grown in fermenters by batch fermentation | The fungus is filtered out and the liquid contains penicillin
+What is genetic modification? => Changing an organism's genetic material by removing, inserting or changing genes
+What are the steps of genetic modification? => A restriction enzyme cuts the gene out, leaving sticky ends | The same enzyme cuts the plasmid | DNA ligase joins the gene into the plasmid, making a recombinant plasmid | The plasmid (vector) is put into bacteria | Bacteria are grown in a fermenter and make the protein
+What are examples and evaluation of GM? => Human proteins: insulin, growth hormone, factor VIII | Crops: herbicide resistance, pest resistance, golden rice | Advantages: higher yields, less pesticide | Disadvantages: superweeds, expensive seed, less biodiversity | GM crops are bred for several generations before commercial use
+`},
+{id:22,s:"Exam skills",t:"Alternative to practical (Paper 6) and answering skills",notes:`
+What must experimental design include? => Independent variable (the one you change) | Dependent variable (the one you measure) and how it is measured | Control variables (at least 5) | Repeats and a mean
+What is a control? => It allows a comparison | It shows what normally happens, so the effect of the independent variable can be seen
+How do you improve reliability, accuracy and validity? => Reliable: repeat at least three times, discard anomalies, calculate a mean | Accurate: more tests within the range, narrower range, avoid double counting | Valid: keep all control variables the same
+What do the command words mean? => Describe: say what the data shows; trends, sections, use data points | Explain: say why, using scientific knowledge | Compare: each statement refers to both sets of data
+How do you draw good diagrams and graphs? => Diagrams: title, sharp pencil, ruled non-crossing label lines outside the drawing, scale bar, no shading, use at least 50% of the space | Graphs: label axes with units, sensible scale, plot with X, line of best fit if required
+`}
+];
+CH.forEach(function(c){
+  c.cards = c.notes.trim().split("\n").map(function(l){
+    var p = l.split(" => ");
+    return {q:p[0].trim(), a:p[1].split(" | ")};
+  });
+});
+
+/* [chapter, difficulty 1-3, question, options, correct index, explanation] */
+var QB = [
+[1,1,"Which of these is NOT a characteristic of all living organisms?",["Photosynthesis","Excretion","Sensitivity","Reproduction"],0,"Only plants and some other organisms photosynthesise. All living things move, respire, are sensitive, grow, reproduce, excrete and need nutrition."],
+[1,2,"In the name <i>Canis lupus</i>, what does 'lupus' show?",["The genus","The species","The family","The kingdom"],1,"In the binomial system the first word is the genus and the second is the species."],
+[1,3,"Why is a virus classed as non-living?",["It is too small to be seen","It cannot respire, excrete or replicate without a host cell","It has no genetic material","It has a cellulose cell wall"],1,"Viruses have DNA or RNA in a protein coat but do not carry out life processes and need a host cell to replicate."],
+[2,1,"Which organelle is the site of aerobic respiration?",["Nucleus","Ribosome","Mitochondrion","Vacuole"],2,"Aerobic respiration takes place in mitochondria."],
+[2,2,"Which structure is found in bacterial cells but not in plant or animal cells?",["Cell membrane","Ribosomes","Plasmid","Cytoplasm"],2,"Plasmids (small circular DNA) are characteristic of bacteria. The other three are found in all three cell types."],
+[2,3,"A cell is drawn 60 mm long. Its real length is 0.03 mm. What is the magnification?",["× 200","× 2 000","× 20 000","× 1 800"],1,"Magnification = image size ÷ actual size = 60 ÷ 0.03 = 2 000."],
+[3,1,"Diffusion is the net movement of particles from…",["high to low concentration","low to high concentration, using energy","outside a cell to inside only","a dilute to a concentrated solution through a membrane"],0,"Diffusion is passive and moves particles down a concentration gradient."],
+[3,2,"What happens to a plant cell placed in concentrated salt solution?",["It becomes turgid","It bursts","It loses water and becomes flaccid","Nothing, because the cell wall prevents any change"],2,"Water leaves by osmosis, so the cell becomes flaccid and the membrane may pull away from the wall (plasmolysis)."],
+[3,3,"Root hair cells take in nitrate ions even though the nitrate concentration in the soil is lower than inside the cell. Which process is this?",["Diffusion","Osmosis","Active transport","Transpiration"],2,"Movement against a concentration gradient uses energy from respiration and carrier proteins. That is active transport."],
+[4,1,"What colour does iodine solution turn when starch is present?",["Brick red","Purple","Blue-black","Milky white"],2,"Iodine changes from brown to blue-black with starch."],
+[4,2,"A food is heated with Benedict's solution and turns brick red. What does it contain?",["Starch","A reducing sugar","Protein","Lipid"],1,"Benedict's solution gives a green to brick-red colour with reducing sugars such as glucose."],
+[4,3,"Which statement about base pairing in DNA is correct?",["A pairs with T and C pairs with G","A pairs with U and C pairs with G","A pairs with G and C pairs with T","A pairs with C and G pairs with T"],0,"In DNA, adenine pairs with thymine and cytosine with guanine. Uracil appears in RNA instead of thymine."],
+[5,1,"What is an enzyme?",["A biological catalyst made of protein","A hormone made of lipid","A carbohydrate store","A type of vitamin"],0,"Enzymes are proteins that speed up metabolic reactions."],
+[5,2,"Why does enzyme activity fall rapidly above the optimum temperature?",["There is less kinetic energy","The enzyme is denatured and the active site changes shape","The substrate is used up","The enzyme is converted into another product"],1,"High temperature changes the enzyme's shape, so the substrate no longer fits the active site."],
+[5,3,"Pepsin works best at pH 2. Why does it stop working in the small intestine (about pH 8)?",["There is no protein there","The pH change alters the active site, so pepsin is denatured","The temperature is too low","Pepsin is digested by amylase"],1,"A pH far from the optimum changes the 3D shape of the enzyme, so it is denatured."],
+[6,1,"Which gas is a product of photosynthesis?",["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],2,"Photosynthesis makes glucose and oxygen from carbon dioxide and water."],
+[6,2,"Why is a leaf boiled in ethanol before iodine is added in the starch test?",["To remove chlorophyll so the colour change can be seen","To make more starch","To dissolve the starch","To make the iodine more concentrated"],0,"Green chlorophyll would hide the blue-black colour, so it is removed by hot ethanol."],
+[6,3,"Hydrogencarbonate indicator with pondweed in bright light turns purple. Why?",["Photosynthesis uses CO<sub>2</sub> faster than respiration produces it","Respiration is faster than photosynthesis","The plant has stopped respiring","The oxygen concentration has fallen"],0,"Purple means low CO<sub>2</sub>. In bright light photosynthesis removes CO<sub>2</sub> faster than respiration releases it."],
+[7,1,"Where is bile stored?",["Liver","Gall bladder","Pancreas","Stomach"],1,"Bile is made in the liver and stored in the gall bladder."],
+[7,2,"Which enzyme breaks protein down into amino acids?",["Amylase","Lipase","Protease","Maltase"],2,"Proteases such as pepsin and trypsin digest proteins."],
+[7,3,"How does bile help the digestion of fats?",["It contains lipase that digests fat","It emulsifies fat and neutralises stomach acid","It makes the duodenum acidic","It absorbs fatty acids into the blood"],1,"Bile is alkaline and emulsifies fat into droplets, giving a larger surface area for lipase to act on."],
+[8,1,"Which tissue carries water up a plant?",["Phloem","Xylem","Palisade mesophyll","Epidermis"],1,"Xylem carries water and mineral ions from roots to leaves."],
+[8,2,"Which set of conditions gives the fastest transpiration rate?",["Cold, humid, still air","Hot, dry, windy","Cold, dry, windy","Hot, humid, still air"],1,"Heat speeds evaporation and dry, windy air keeps the water vapour gradient steep."],
+[8,3,"In a potometer an air bubble moves 24 mm in 30 minutes. What is the rate of water uptake?",["0.4 mm per minute","0.8 mm per minute","1.25 mm per minute","12 mm per minute"],1,"Rate = distance ÷ time = 24 ÷ 30 = 0.8 mm per minute."],
+[9,1,"Which vessel carries blood from the heart to the lungs?",["Pulmonary artery","Pulmonary vein","Aorta","Vena cava"],0,"The pulmonary artery carries deoxygenated blood from the right ventricle to the lungs."],
+[9,2,"Why is the wall of the left ventricle thicker than the right?",["It receives blood from the body","It pumps blood around the whole body at higher pressure","It contains the valves","It pumps blood to the lungs only"],1,"The left ventricle pushes blood all around the body, so it needs more muscle than the right ventricle, which only reaches the lungs."],
+[9,3,"A baby has a hole in the septum between the ventricles. Why might the tissues receive too little oxygen?",["Blood flows backwards into the atria","Oxygenated and deoxygenated blood mix, so blood sent to the body is less oxygenated","The valves stop working","Blood cannot reach the lungs"],1,"The septum keeps oxygenated and deoxygenated blood separate. A hole lets them mix."],
+[10,1,"What is a pathogen?",["A disease-causing microorganism","A protein made by lymphocytes","A type of white blood cell","A vaccine"],0,"Pathogens include bacteria, viruses and some fungi and protoctists."],
+[10,2,"How does a vaccine give protection?",["It contains ready-made antibodies","Weakened pathogens or antigens trigger lymphocytes to make antibodies and memory cells","It kills all bacteria in the blood","It supplies antibiotics"],1,"Vaccination causes active immunity and creates memory cells for a faster response next time."],
+[10,3,"Which is an example of passive immunity?",["Antibodies passed to a baby in breast milk","A measles vaccination","Recovering from chickenpox","Memory cells made after a flu vaccine"],0,"Passive immunity uses antibodies from another person and no memory cells are made."],
+[11,1,"During inhalation, what happens to the diaphragm?",["It contracts and flattens","It relaxes and domes upward","It stays still","It moves the ribs down"],0,"The diaphragm contracts and flattens, which increases the volume of the thorax."],
+[11,2,"Which feature of the alveoli helps keep a steep concentration gradient?",["Thin walls","A large surface area","A good blood supply and ventilation","A moist lining"],2,"Blood flow removes oxygen and brings CO<sub>2</sub>, while breathing refreshes the air, so the gradient stays steep."],
+[11,3,"Why does breathing rate rise during exercise?",["The CO<sub>2</sub> concentration in the blood rises and is detected by the brain","The oxygen concentration in the blood rises","The diaphragm needs more energy","The lungs become smaller"],0,"More respiration produces more CO<sub>2</sub>. Receptors in the medulla detect it and increase breathing rate and depth."],
+[12,1,"What are the products of aerobic respiration?",["Carbon dioxide and water","Lactic acid","Ethanol and carbon dioxide","Glucose and oxygen"],0,"Glucose + oxygen → carbon dioxide + water, releasing energy."],
+[12,2,"Which substance is made by anaerobic respiration in muscles?",["Ethanol","Lactic acid","Starch","Oxygen"],1,"Muscles produce lactic acid. Yeast produces ethanol and carbon dioxide."],
+[12,3,"Why does breathing stay fast after hard exercise?",["To supply oxygen to break down lactic acid (repay the oxygen debt)","To make more glucose","To cool the lungs","To remove nitrogen from the blood"],0,"Extra oxygen is needed to break down the lactic acid built up by anaerobic respiration."],
+[13,1,"Which waste substance is excreted by the kidneys?",["Carbon dioxide","Urea","Faeces","Bile"],1,"Kidneys excrete urea, excess water and ions."],
+[13,2,"Which substance is NOT normally found in the urine of a healthy person?",["Urea","Excess ions","Glucose","Water"],2,"All glucose is reabsorbed by active transport in the nephron."],
+[13,3,"Why are proteins not found in the glomerular filtrate?",["They are used up in the glomerulus","Their molecules are too large to pass through the filter","They are reabsorbed in the loop of Henle","They are broken down into urea first"],1,"Only small molecules pass through the basement membrane into the Bowman's capsule."],
+[14,1,"Which is the correct order of parts in a reflex arc?",["Receptor, sensory neurone, relay neurone, motor neurone, effector","Receptor, motor neurone, relay neurone, sensory neurone, effector","Effector, sensory neurone, relay neurone, motor neurone, receptor","Receptor, relay neurone, sensory neurone, effector, motor neurone"],0,"Stimulus → receptor → sensory neurone → relay neurone → motor neurone → effector → response."],
+[14,2,"What happens to the eye in bright light?",["Circular muscles contract and the pupil gets smaller","Radial muscles contract and the pupil gets larger","Ciliary muscles contract and the lens gets thinner","Suspensory ligaments slacken"],0,"Circular muscles of the iris contract and radial muscles relax, so the pupil constricts and protects the retina."],
+[14,3,"Blood glucose is too high. Which sequence is correct?",["Pancreas releases insulin, liver converts glucose to glycogen, blood glucose falls","Pancreas releases glucagon, liver converts glycogen to glucose, blood glucose falls","Adrenal glands release insulin, blood glucose rises","Liver releases insulin, kidneys remove glucose"],0,"High glucose triggers insulin release. The liver stores the glucose as glycogen, which lowers blood glucose."],
+[15,1,"Antibiotics are used to treat infections caused by…",["Bacteria","Viruses","Both bacteria and viruses","Genes"],0,"Antibiotics treat bacterial infections only."],
+[15,2,"Why do antibiotics not work against viruses?",["Viruses live inside host cells and do not use the bacterial processes antibiotics target","Viruses are too large","Viruses are always resistant","Antibiotics only work on fungi"],0,"Antibiotics stop bacterial replication and metabolism. Viruses live inside host cells and replicate differently."],
+[15,3,"Which action best reduces the spread of antibiotic-resistant bacteria?",["Stopping the course once symptoms disappear","Using antibiotics for viral colds","Completing the prescribed course and only using antibiotics when essential","Giving antibiotics to healthy farm animals"],2,"Completing the course kills all the bacteria, so none survive to mutate and spread resistance."],
+[16,1,"What is the fusion of a male and a female gamete called?",["Pollination","Fertilisation","Germination","Ovulation"],1,"Fertilisation is the fusion of the nuclei of male and female gametes to form a zygote."],
+[16,2,"Which set of features suits a wind-pollinated flower?",["Large coloured petals and nectar","Small dull petals, feathery stigma and loosely hanging anthers","Sticky pollen and scent","Stiff anthers and a flat stigma"],1,"Wind-pollinated flowers expose their anthers and stigmas and do not need to attract insects."],
+[16,3,"Which hormone, released from the pituitary gland, triggers ovulation?",["FSH","Progesterone","LH","Testosterone"],2,"LH (luteinising hormone) causes the egg to be released around day 14."],
+[17,1,"Which sex chromosomes does a human female have?",["XX","XY","YY","X only"],0,"Females are XX and males are XY."],
+[17,2,"Two parents are both Cc (carriers). What is the chance that their child is cc?",["0%","25%","50%","75%"],1,"The Punnett square gives CC, Cc, Cc, cc, so 1 in 4 (25%) is cc."],
+[17,3,"Red-green colour blindness is X-linked recessive. A carrier mother and a normal-sighted father have a son. What is the chance that he is colour blind?",["0%","25%","50%","100%"],2,"A son gets his X from his mother. She passes on the colour-blind X half the time, so 50%."],
+[18,1,"Which is an example of discontinuous variation?",["Height","Blood group","Body mass","Leaf length"],1,"Blood groups fall into distinct categories (A, B, AB, O) with no intermediates."],
+[18,2,"Which sequence describes natural selection?",["Variation, competition, better-adapted survive and reproduce, alleles passed on","Competition, mutation, individuals change to fit, alleles passed on","Variation, humans choose parents, offspring selected","Mutation, all survive, equal reproduction"],0,"Natural selection depends on variation, competition and the survival and reproduction of the better adapted."],
+[18,3,"Why do polar bears have small ears?",["To see better","To reduce surface area and heat loss","To increase hearing","To camouflage them in snow"],1,"A smaller surface area reduces heat loss in cold conditions."],
+[19,1,"What do the arrows in a food chain represent?",["The direction of energy transfer","The movement of predators","The amount of biomass","Which organism is larger"],0,"Arrows show the direction in which energy flows, from the food to the feeder."],
+[19,2,"Why are food chains rarely longer than five trophic levels?",["Too much energy is lost at each level","Predators run out of space","Producers are too large","Decomposers eat the top consumers"],0,"Only about 10% of energy passes to the next level, so too little remains for further levels."],
+[19,3,"Which bacteria convert nitrates into nitrogen gas?",["Nitrogen-fixing bacteria","Nitrifying bacteria","Denitrifying bacteria","Decomposing bacteria"],2,"Denitrifying bacteria turn nitrate ions back into nitrogen gas."],
+[20,1,"Why does deforestation increase atmospheric CO<sub>2</sub>?",["Fewer trees remove CO<sub>2</sub> by photosynthesis, and burning or decay releases it","Trees release CO<sub>2</sub> only when alive","Soil absorbs less nitrogen","Rainfall increases"],0,"Less photosynthesis means less CO<sub>2</sub> removed, and burning or decaying trees releases more."],
+[20,2,"What directly causes fish to die during eutrophication?",["Lack of dissolved oxygen","Too much sunlight","Nitrate poisoning","Algae eating them"],0,"Decomposers use up the oxygen as they break down dead plants, so fish suffocate."],
+[20,3,"Which technique used in captive breeding fertilises eggs outside the body?",["Artificial insemination","IVF","Taking cuttings","Selective pollination"],1,"In IVF, eggs and sperm are combined in a dish and the embryo is placed in the uterus."],
+[21,1,"Which enzyme cuts DNA at a specific point in genetic engineering?",["DNA ligase","Restriction enzyme","Amylase","Protease"],1,"Restriction enzymes cut DNA at specific points. DNA ligase joins the pieces."],
+[21,2,"What is the role of a plasmid in genetic modification?",["It cuts out the gene","It acts as a vector to carry the gene into bacteria","It digests the gene","It makes the protein directly"],1,"A plasmid is the vector: the gene is inserted into it and the recombinant plasmid is put back into bacteria."],
+[21,3,"Why is lactase immobilised when making lactose-free milk?",["So it can be reused and does not end up in the milk","So it works at any temperature","So it denatures","So the milk is purified afterwards"],0,"Immobilised enzymes can be reused and do not contaminate the product."],
+[22,1,"What is the independent variable in an investigation?",["The variable that is changed","The variable that is measured","The variable kept constant","The final result"],0,"The independent variable is the one you deliberately change."],
+[22,2,"Which action makes results more reliable?",["Repeat at least three times and calculate a mean","Do one test with a large sample","Change several variables at once","Ignore anomalous results"],0,"Repeats let you spot anomalies, and a mean reduces the effect of random error."],
+[22,3,"What is the purpose of a control in an experiment?",["To allow a comparison showing what happens without the change","To increase the temperature","To speed up the reaction","To reduce the number of repeats"],0,"A control shows what would normally happen so you can judge the effect of the independent variable."]
+];
+
+/* ============ STORAGE ============ */
+var KEY = "ibio_revision_v1";
+var DB = {students:{}, current:null};
+var storeOK = true;
+function load(){
+  try{
+    var r = localStorage.getItem(KEY);
+    if(r){ var o = JSON.parse(r); if(o && o.students){ DB = o; } }
+  }catch(e){ storeOK = false; }
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(DB)); }
+  catch(e){ storeOK = false; renderWarn(); }
+}
+function me(){ return DB.current && DB.students[DB.current] ? DB.students[DB.current] : null; }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function strip(h){ return String(h).replace(/<[^>]+>/g,""); }
+function chById(id){ return CH.filter(function(c){return c.id===id;})[0]; }
+
+/* ============ STATS ============ */
+var W = {1:1, 2:1.5, 3:2};
+function mk(){ return {n:0, ok:0, w:0, wok:0, ms:0}; }
+function addTo(o,a){ o.n++; if(a.ok) o.ok++; o.w += W[a.d]; if(a.ok) o.wok += W[a.d]; o.ms += a.ms; }
+function pct(o){ return o && o.n ? Math.round(100*o.wok/o.w) : null; }
+function acc(o){ return o && o.n ? Math.round(100*o.ok/o.n) : null; }
+function stats(att){
+  var r = {all:mk(), byCh:{}, byTh:[], byD:{1:mk(),2:mk(),3:mk()}, okMs:0, okN:0, badMs:0, badN:0, fastWrong:0};
+  CH.forEach(function(c){ r.byCh[c.id] = mk(); });
+  THEMES.forEach(function(){ r.byTh.push(mk()); });
+  att.forEach(function(a){
+    addTo(r.all,a); addTo(r.byCh[a.c],a); addTo(r.byD[a.d],a);
+    THEMES.forEach(function(t,i){ if(t.ids.indexOf(a.c)>-1) addTo(r.byTh[i],a); });
+    if(a.ok){ r.okMs += a.ms; r.okN++; } else { r.badMs += a.ms; r.badN++; if(a.ms < 5000) r.fastWrong++; }
+  });
+  return r;
+}
+function level(p,n,minN){
+  if(!n) return {k:"na", t:"Not tested"};
+  if(n < minN) return {k:"na", t:"Too few answers"};
+  if(p >= 85) return {k:"ex", t:"Excellent"};
+  if(p >= 70) return {k:"st", t:"Strong"};
+  if(p >= 50) return {k:"dv", t:"Developing"};
+  return {k:"nw", t:"Needs work"};
+}
+function grade(p){
+  if(p >= 85) return "A* to A";
+  if(p >= 70) return "B";
+  if(p >= 58) return "C";
+  if(p >= 45) return "D";
+  return "E or below";
+}
+function secs(ms,n){ return n ? (ms/n/1000).toFixed(1)+" s" : "–"; }
+
+/* ============ STATE ============ */
+var S = {view:"gate", ch:1, q:"", prac:null, confirmReset:false, copied:false};
+function shuffle(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+var $app = document.getElementById("app");
+var $top = document.getElementById("top");
+
+function renderWarn(){
+  document.getElementById("warn").innerHTML = storeOK ? "" : '<div class="warn">Your browser is blocking saved data. Answers will be kept only until you close this page.</div>';
+}
+
+/* ============ RENDER: HEADER ============ */
+function renderTop(){
+  var st = me();
+  var tabs = "";
+  if(st){
+    tabs = '<nav class="tabs" aria-label="Sections">' +
+      [["notes","Notes"],["practice","Practice"],["report","My report"]].map(function(t){
+        return '<button class="tab" data-a="nav" data-v="'+t[0]+'"'+(S.view===t[0]?' aria-current="page"':'')+'>'+t[1]+'</button>';
+      }).join("") + '</nav>' +
+      '<div class="who"><span>Student: <b>'+esc(st.name)+'</b></span><button class="linkbtn" data-a="switch">Switch</button></div>';
+  }
+  $top.innerHTML = '<div class="wrap"><div class="brand">Biology <small>IGCSE 0610 / 0970</small></div>'+tabs+'</div>';
+}
+
+/* ============ RENDER: GATE ============ */
+function viewGate(){
+  var keys = Object.keys(DB.students);
+  var saved = keys.length ? '<div class="saved"><h3>Students on this device</h3><div class="row">' +
+    keys.map(function(k){ return '<button data-a="pick" data-k="'+esc(k)+'">'+esc(DB.students[k].name)+'</button>'; }).join("") + '</div></div>' : "";
+  return '<section class="gate"><div>' +
+    '<h1>Revise the notes. Answer questions. See exactly where you stand.</h1>' +
+    '<p class="lede">The full IGCSE Biology syllabus in 22 chapters, with practice questions at three levels and a detailed report on your progress.</p>' +
+    '<div class="facts"><div><b>22</b>chapters of notes</div><div><b>'+QB.length+'</b>practice questions</div><div><b>3</b>difficulty levels</div></div>' +
+    '</div>' +
+    '<form class="label" id="nameform"><h2>Who is revising?</h2><p class="sub">Type your name. Your answers and report are saved under it on this device.</p>' +
+    '<label for="nm" class="sub" style="display:block;margin-bottom:2px">Your name</label>' +
+    '<input class="nameline" id="nm" maxlength="40" autocomplete="off" placeholder="e.g. Sara Ahmed" required>' +
+    '<button class="btn red" type="submit">Start revising</button>' + saved + '</form></section>';
+}
+
+/* ============ RENDER: NOTES ============ */
+function cardHtml(c, open){
+  return '<details class="card"'+(open?' open':'')+'><summary>'+c.q+'</summary><ul>'+c.a.map(function(x){return '<li>'+x+'</li>';}).join("")+'</ul></details>';
+}
+function notesBody(){
+  var st = me();
+  var q = S.q.trim().toLowerCase();
+  if(q){
+    var out = "", n = 0;
+    CH.forEach(function(c){
+      var hits = c.cards.filter(function(k){ return (strip(k.q)+" "+strip(k.a.join(" "))).toLowerCase().indexOf(q) > -1; });
+      if(hits.length){
+        n += hits.length;
+        out += '<p class="rtag">Chapter '+c.id+': '+esc(c.t)+'</p>' + hits.map(function(k){return cardHtml(k,true);}).join("");
+      }
+    });
+    return '<p class="found">'+(n ? n+" matching "+(n===1?"card":"cards")+" across all chapters." : "No cards match “"+esc(S.q.trim())+"”. Try a shorter or different word.")+'</p>' + out;
+  }
+  var c = chById(S.ch);
+  var read = st.read[c.id];
+  return '<div class="chead"><span class="big">'+c.id+'</span><h2>'+esc(c.t)+'</h2></div>' +
+    '<p class="chmeta">'+c.cards.length+' cards. Tap a question to open the answer.</p>' +
+    c.cards.map(function(k){return cardHtml(k,false);}).join("") +
+    '<div class="row" style="margin-top:22px"><button class="btn'+(read?' ghost':'')+'" data-a="read">'+(read?'Marked as read':'Mark chapter as read')+'</button>' +
+    '<button class="btn ghost" data-a="prac-ch" data-id="'+c.id+'">Practise this chapter</button></div>';
+}
+function viewNotes(){
+  var st = me();
+  var list = CH.map(function(c){
+    return '<button class="chl'+(c.id===S.ch && !S.q.trim()?' on':'')+'" data-a="chap" data-id="'+c.id+'"><span class="cn">'+c.id+'</span><span>'+esc(c.t)+'</span>'+(st.read[c.id]?'<span class="rd">Read</span>':'')+'</button>';
+  }).join("");
+  var sel = '<select class="chsel" id="chsel" aria-label="Choose a chapter">'+CH.map(function(c){
+    return '<option value="'+c.id+'"'+(c.id===S.ch?' selected':'')+'>'+c.id+'. '+esc(c.t)+'</option>';
+  }).join("")+'</select>';
+  return '<div class="ngrid"><aside class="side" aria-label="Chapters">'+list+'</aside><div>' +
+    sel +
+    '<input class="search" id="search" type="search" placeholder="Search all notes, e.g. osmosis" value="'+esc(S.q)+'" aria-label="Search all notes">' +
+    '<div id="nbody">'+notesBody()+'</div></div></div>';
+}
+
+/* ============ RENDER: PRACTICE ============ */
+function qPool(sel,diff){
+  return QB.map(function(q,i){return {i:i,c:q[0],d:q[1]};}).filter(function(x){
+    return sel.indexOf(x.c) > -1 && (!diff || x.d === diff);
+  });
+}
+function viewPracSetup(){
+  var P = S.prac;
+  var chips = CH.map(function(c){
+    return '<button class="chip" data-a="pc" data-id="'+c.id+'" aria-pressed="'+(P.sel.indexOf(c.id)>-1)+'">'+c.id+'. '+esc(c.s)+'</button>';
+  }).join("");
+  var pool = qPool(P.sel,P.diff).length;
+  var seg = function(act,cur,items){
+    return '<div class="seg" role="group">'+items.map(function(it){
+      return '<button data-a="'+act+'" data-v="'+it[0]+'" aria-pressed="'+(String(cur)===String(it[0]))+'">'+it[1]+'</button>';
+    }).join("")+'</div>';
+  };
+  var hasData = me().attempts.length >= 6;
+  return '<h1 style="font-size:clamp(28px,4vw,40px)">Practice</h1><p class="lede" style="margin:8px 0 22px">Pick chapters, a level and a length. Every answer counts towards your report.</p>' +
+    '<div class="panel"><h3>Chapters</h3><div class="chips">'+chips+'</div>' +
+    '<div class="row" style="margin-top:12px"><button class="linkbtn" data-a="pall">Select all</button><button class="linkbtn" data-a="pnone">Clear</button>'+(hasData?'<button class="linkbtn" data-a="pweak">Pick my 3 weakest chapters</button>':'')+'</div></div>' +
+    '<div class="two"><div class="panel"><h3>Level</h3>'+seg("pd",P.diff,[[0,"All"],[1,"Easy"],[2,"Medium"],[3,"Hard"]])+'</div>' +
+    '<div class="panel"><h3>Number of questions</h3>'+seg("pn",P.count,[[10,"10"],[20,"20"],[0,"All"]])+'</div></div>' +
+    '<div class="row"><button class="btn red" data-a="begin"'+(pool?'':' disabled')+'>Start practice</button><span class="note" style="margin:0">'+(pool?pool+" question"+(pool===1?"":"s")+" match your choices.":"No questions match. Select at least one chapter or change the level.")+'</span></div>';
+}
+function viewPracRun(){
+  var P = S.prac, it = P.queue[P.i], q = QB[it.qi];
+  var letters = ["A","B","C","D"];
+  var dl = ["","Easy","Medium","Hard"][q[1]];
+  var ans = P.answered;
+  var opts = it.order.map(function(oi,pos){
+    var cls = "opt";
+    if(ans){ if(oi===q[4]) cls += " good"; else if(oi===P.pick) cls += " bad"; }
+    return '<button class="'+cls+'" data-a="opt" data-i="'+oi+'"'+(ans?' disabled':'')+'><span class="k">'+letters[pos]+'</span><span>'+q[3][oi]+'</span></button>';
+  }).join("");
+  var fb = "";
+  if(ans){
+    var ok = P.pick === q[4];
+    fb = '<div class="fb '+(ok?'good':'bad')+'" role="status"><b>'+(ok?'Correct.':'Not quite. The answer is: '+strip(q[3][q[4]]))+'</b><p>'+q[5]+'</p>' +
+      '<div class="row"><button class="btn" data-a="next">'+(P.i+1>=P.queue.length?'See results':'Next question')+'</button>' +
+      '<button class="linkbtn" data-a="goto-notes" data-id="'+q[0]+'">Review chapter '+q[0]+' notes</button></div></div>';
+  }
+  return '<div class="qmeta"><span>Question '+(P.i+1)+' of '+P.queue.length+'</span><span>Chapter '+q[0]+': '+esc(chById(q[0]).s)+' · '+dl+'</span></div>' +
+    '<div class="prog"><i style="width:'+Math.round(100*(P.i+(ans?1:0))/P.queue.length)+'%"></i></div>' +
+    '<h2 class="qtext">'+q[2]+'</h2><div class="opts" role="group" aria-label="Answer choices">'+opts+'</div>'+fb;
+}
+function viewPracDone(){
+  var P = S.prac;
+  var ok = P.results.filter(function(r){return r.ok;}).length, n = P.results.length;
+  var per = {};
+  P.results.forEach(function(r){ var c = QB[r.qi][0]; per[c] = per[c] || {n:0,ok:0}; per[c].n++; if(r.ok) per[c].ok++; });
+  var rows = Object.keys(per).map(function(c){
+    return '<tr><td>'+c+'. '+esc(chById(+c).t)+'</td><td class="num">'+per[c].ok+' / '+per[c].n+'</td></tr>';
+  }).join("");
+  var missed = P.results.filter(function(r){return !r.ok;}).map(function(r){
+    var q = QB[r.qi];
+    return '<div class="miss"><b>'+q[2]+'</b><p>Answer: '+q[3][q[4]]+'. '+q[5]+'</p></div>';
+  }).join("");
+  return '<h1 style="font-size:clamp(28px,4vw,40px)">Practice complete</h1>' +
+    '<div class="row" style="margin:18px 0 8px;align-items:flex-end;gap:18px"><span class="score">'+Math.round(100*ok/n)+'%</span><span class="lede" style="margin-bottom:6px">'+ok+' of '+n+' correct</span></div>' +
+    '<div class="row" style="margin:18px 0 26px"><button class="btn red" data-a="nav" data-v="report">See my report</button><button class="btn ghost" data-a="again">Practise again</button></div>' +
+    '<h3 style="margin-bottom:10px">By chapter</h3><div class="tbl" style="max-width:560px"><table style="min-width:0"><tbody>'+rows+'</tbody></table></div>' +
+    (missed ? '<h3 style="margin:28px 0 4px">Questions to revisit</h3>'+missed : '<p class="lede" style="margin-top:24px">No mistakes this time. Try a harder level.</p>');
+}
+function viewPractice(){
+  if(!S.prac) S.prac = {stage:"setup", sel:CH.map(function(c){return c.id;}), diff:0, count:10};
+  if(S.prac.stage==="run") return viewPracRun();
+  if(S.prac.stage==="done") return viewPracDone();
+  return viewPracSetup();
+}
+
+/* ============ RENDER: REPORT ============ */
+function radar(vals){
+  var cx=230, cy=165, R=98, n=vals.length;
+  function pt(i,r){ var a=-Math.PI/2+2*Math.PI*i/n; return [cx+r*Math.cos(a), cy+r*Math.sin(a)]; }
+  function f(p){ return p[0].toFixed(1)+","+p[1].toFixed(1); }
+  var s = '<svg viewBox="0 0 460 330" role="img" aria-label="Radar chart of mastery in each topic area">';
+  [25,50,75,100].forEach(function(p){
+    s += '<polygon class="rg" points="'+vals.map(function(_,i){return f(pt(i,R*p/100));}).join(" ")+'"/>';
+  });
+  vals.forEach(function(_,i){ var p=pt(i,R); s += '<line class="rg" x1="'+cx+'" y1="'+cy+'" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'"/>'; });
+  s += '<polygon class="ra" points="'+vals.map(function(v,i){return f(pt(i,R*(v===null?0:v)/100));}).join(" ")+'"/>';
+  vals.forEach(function(v,i){
+    var p = pt(i,R*(v===null?0:v)/100);
+    s += '<circle class="rd2'+(v===null?' empty':'')+'" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.5"/>';
+    var lp = pt(i,R+16);
+    var anchor = Math.abs(lp[0]-cx)<10 ? "middle" : (lp[0]>cx ? "start" : "end");
+    var y = lp[1] + (lp[1] > cy+5 ? 12 : (lp[1] < cy-5 ? -14 : -2));
+    s += '<text class="rl" text-anchor="'+anchor+'" x="'+lp[0].toFixed(1)+'" y="'+y.toFixed(1)+'">'+THEMES[i].n+'</text>' +
+         '<text class="rl2" text-anchor="'+anchor+'" x="'+lp[0].toFixed(1)+'" y="'+(y+14).toFixed(1)+'">'+(v===null?"not tested":v+"%")+'</text>';
+  });
+  return s + '</svg>';
+}
+function reportData(st){
+  var A = st.attempts, r = stats(A);
+  var overallP = pct(r.all);
+  var ov = level(overallP, r.all.n, 10);
+  var rows = CH.map(function(c){
+    var o = r.byCh[c.id], p = pct(o);
+    return {c:c, o:o, p:p, lv:level(p,o.n,2)};
+  });
+  var tested = rows.filter(function(x){return x.o.n>=2;});
+  var weak = tested.filter(function(x){return x.p<70;}).sort(function(a,b){return a.p-b.p;}).slice(0,3);
+  var strong = tested.filter(function(x){return x.p>=70;}).sort(function(a,b){return b.p-a.p;}).slice(0,3);
+  var untested = rows.filter(function(x){return x.o.n===0;});
+  var trend = null;
+  if(A.length >= 20){
+    var last = A.slice(-10), prev = A.slice(0,-10);
+    var la = last.filter(function(a){return a.ok;}).length/last.length*100;
+    var pa = prev.filter(function(a){return a.ok;}).length/prev.length*100;
+    var d = Math.round(la-pa);
+    trend = {last:Math.round(la), prev:Math.round(pa), d:d};
+  }
+  var recs = [];
+  var e = acc(r.byD[1]), m = acc(r.byD[2]), h = acc(r.byD[3]);
+  if(r.all.n >= 10){
+    if(e!==null && e < 60) recs.push("Your easy-question accuracy is "+e+"%, so start by learning the core definitions and key terms in the notes before moving to harder questions.");
+    else if(e!==null && h!==null && r.byD[3].n>=3 && e-h >= 25) recs.push("You score "+e+"% on easy questions but "+h+"% on hard ones. You know the facts but lose marks applying them. Practise explaining why things happen, not just what happens.");
+    if(r.fastWrong >= 3) recs.push("You gave "+r.fastWrong+" wrong answers in under 5 seconds, which suggests guessing. Read every option before choosing.");
+    if(r.badN>=3 && r.okN>=3 && (r.badMs/r.badN) > 1.6*(r.okMs/r.okN)) recs.push("Wrong answers take you much longer than correct ones. When you hesitate, that topic needs another read through the notes.");
+  }
+  weak.forEach(function(x){ recs.push("Revise chapter "+x.c.id+", “"+x.c.t+"” ("+x.p+"%). Read the notes, then retry its questions at Easy level first."); });
+  if(untested.length) recs.push("You haven't tried "+untested.length+" of 22 chapters yet. Untested chapters could be hiding weak spots.");
+  var readN = Object.keys(st.read).filter(function(k){return st.read[k];}).length;
+  var unread = rows.filter(function(x){return x.o.n>0 && !st.read[x.c.id] && x.p!==null && x.p<70;});
+  if(unread.length) recs.push("You have practised "+unread.map(function(x){return "chapter "+x.c.id;}).slice(0,3).join(", ")+" without marking the notes as read. Reading first usually lifts the score.");
+  if(!recs.length && r.all.n>=10) recs.push("Strong all round. Move to Hard questions and mixed-chapter sets to stay sharp.");
+  var sessions = {};
+  A.forEach(function(a){ var s = sessions[a.s] = sessions[a.s] || {t:a.t, n:0, ok:0}; s.n++; if(a.ok) s.ok++; s.t = Math.max(s.t,a.t); });
+  var sess = Object.keys(sessions).map(function(k){return sessions[k];}).sort(function(a,b){return b.t-a.t;}).slice(0,8);
+  return {r:r, overallP:overallP, ov:ov, rows:rows, weak:weak, strong:strong, untested:untested, trend:trend, recs:recs, readN:readN, sess:sess, e:e, m:m, h:h};
+}
+function viewReport(){
+  var st = me();
+  if(!st.attempts.length){
+    return '<div class="empty"><h2>No answers yet, '+esc(st.name)+'</h2><p>Your report builds as you answer practice questions. It shows your level in every chapter and topic area, your speed, and what to revise next.</p><button class="btn red" data-a="nav" data-v="practice">Start practice</button></div>';
+  }
+  var D = reportData(st), r = D.r;
+  var today = new Date().toLocaleDateString(undefined,{day:"numeric",month:"long",year:"numeric"});
+  var themeVals = r.byTh.map(function(o){ return o.n ? pct(o) : null; });
+  var lbCls = "l-"+D.ov.k;
+  var summaryBox = '<div class="lvlbox '+lbCls+'"><div>Overall level (weighted by difficulty)</div><div class="lv">'+(D.ov.k==="na" ? "Keep going" : D.ov.t)+'</div>' +
+    (D.ov.k==="na" ? '<div>Answer at least 10 questions to get an overall level. You have answered '+r.all.n+'.</div>' :
+      '<div>Mastery score '+D.overallP+'%. Indicative grade band: <b>'+grade(D.overallP)+'</b>.</div>') +
+    '<div class="nums"><div><b>'+r.all.n+'</b><span>questions answered</span></div><div><b>'+acc(r.all)+'%</b><span>answered correctly</span></div><div><b>'+secs(r.all.ms,r.all.n)+'</b><span>average time</span></div><div><b>'+D.readN+'/22</b><span>chapters read</span></div></div></div>';
+  var dbars = [[1,"Easy"],[2,"Medium"],[3,"Hard"]].map(function(x){
+    var o = r.byD[x[0]], a = acc(o);
+    return '<div class="dbar"><span>'+x[1]+'</span><span class="track"><i style="width:'+(a||0)+'%"></i></span><span>'+(o.n? a+"% ("+o.ok+"/"+o.n+")" : "no answers")+'</span></div>';
+  }).join("");
+  var trs = D.rows.map(function(x){
+    return '<tr><td>'+x.c.id+'. '+esc(x.c.t)+'</td><td class="num">'+(x.o.n? x.o.ok+" / "+x.o.n : "–")+'</td>' +
+      '<td class="num">'+(x.o.n? '<span class="minibar"><i style="width:'+x.p+'%"></i></span>'+x.p+'%' : "–")+'</td>' +
+      '<td><span class="badge l-'+x.lv.k+'">'+x.lv.t+'</span></td><td class="num">'+secs(x.o.ms,x.o.n)+'</td>' +
+      '<td class="noprint"><button class="linkbtn" data-a="goto-notes" data-id="'+x.c.id+'">Notes</button></td></tr>';
+  }).join("");
+  var li = function(arr,f){ return arr.length ? '<ul class="list">'+arr.map(f).join("")+'</ul>' : '<p class="note" style="margin:0">Not enough data yet (2 or more answers per chapter needed).</p>'; };
+  var trendTxt = D.trend ? (D.trend.d>=8 ? "Improving: your last 10 answers were "+D.trend.last+"% correct against "+D.trend.prev+"% before." :
+                            D.trend.d<=-8 ? "Slipping: your last 10 answers were "+D.trend.last+"% correct against "+D.trend.prev+"% before. Take a break or go back to the notes." :
+                            "Steady: your last 10 answers were "+D.trend.last+"% correct, close to your earlier "+D.trend.prev+"%.") : "Answer at least 20 questions to see a trend.";
+  var sessRows = D.sess.map(function(s){
+    return '<tr><td>'+new Date(s.t).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})+'</td><td class="num">'+s.ok+' / '+s.n+'</td><td class="num">'+Math.round(100*s.ok/s.n)+'%</td></tr>';
+  }).join("");
+  return '<div class="rep-head"><div><h1 style="font-size:clamp(28px,4vw,42px)">Progress report</h1><p class="lede" style="margin-top:6px">Student: <b style="color:var(--ink)">'+esc(st.name)+'</b></p></div><div class="when">'+today+'</div></div>' +
+    '<div class="summary">'+summaryBox+'<div class="radarwrap">'+radar(themeVals)+'</div></div>' +
+    '<div class="row noprint"><button class="btn" data-a="print">Print or save as PDF</button><button class="btn ghost" data-a="copy">'+(S.copied?"Copied":"Copy report as text")+'</button><button class="btn ghost" data-a="nav" data-v="practice">Keep practising</button></div>' +
+    '<div class="sec"><h2>What to do next</h2>'+(D.recs.length? D.recs.map(function(t){return '<div class="rec">'+esc(t)+'</div>';}).join("") : '<p class="note">Answer a few more questions to get tailored advice.</p>')+'</div>' +
+    '<div class="sec two"><div><h2>Strongest chapters</h2>'+li(D.strong,function(x){return '<li>'+x.c.id+'. '+esc(x.c.t)+' ('+x.p+'%)</li>';})+'</div>' +
+    '<div><h2>Needs attention</h2>'+li(D.weak,function(x){return '<li>'+x.c.id+'. '+esc(x.c.t)+' ('+x.p+'%)</li>';})+'</div></div>' +
+    '<div class="sec two"><div><h2>By difficulty</h2><div class="dbars">'+dbars+'</div><p class="note">Easy questions test recall, hard ones test explanation and application.</p></div>' +
+    '<div><h2>Speed and trend</h2><ul class="list"><li>Average time on correct answers: '+secs(r.okMs,r.okN)+'</li><li>Average time on wrong answers: '+secs(r.badMs,r.badN)+'</li><li>Wrong answers given in under 5 seconds: '+r.fastWrong+'</li><li>'+trendTxt+'</li></ul></div></div>' +
+    '<div class="sec"><h2>Chapter by chapter</h2><div class="tbl"><table><thead><tr><th>Chapter</th><th>Correct</th><th>Mastery</th><th>Level</th><th>Avg time</th><th class="noprint"></th></tr></thead><tbody>'+trs+'</tbody></table></div>' +
+    '<p class="note">Mastery weights hard questions more than easy ones (easy 1, medium 1.5, hard 2). A chapter needs at least 2 answers to get a level. Levels: Excellent 85% and above, Strong 70–84%, Developing 50–69%, Needs work below 50%. The grade band is a rough guide from practice only and is not a prediction of your exam result.</p></div>' +
+    '<div class="sec"><h2>Recent sessions</h2><div class="tbl" style="max-width:520px"><table style="min-width:0"><thead><tr><th>Date</th><th>Score</th><th>Percent</th></tr></thead><tbody>'+sessRows+'</tbody></table></div></div>' +
+    '<div class="sec noprint"><h2>Your data</h2><p class="note" style="margin:0 0 10px">Results are saved in this browser on this device only. Clearing browser data or using another device starts fresh.</p>' +
+    '<button class="btn ghost" data-a="reset">'+(S.confirmReset?"Press again to erase all my answers":"Erase my answers")+'</button></div>';
+}
+function reportText(){
+  var st = me(), D = reportData(st), r = D.r, L = [];
+  L.push("IGCSE Biology progress report");
+  L.push("Student: "+st.name+"   Date: "+new Date().toLocaleDateString());
+  L.push("");
+  L.push("Overall: "+(D.ov.k==="na" ? "not enough answers yet" : D.ov.t+" ("+D.overallP+"%, indicative grade band "+grade(D.overallP)+")"));
+  L.push("Answered: "+r.all.n+"   Correct: "+acc(r.all)+"%   Average time: "+secs(r.all.ms,r.all.n)+"   Chapters read: "+D.readN+"/22");
+  L.push("By difficulty: Easy "+(acc(r.byD[1])===null?"-":acc(r.byD[1])+"%")+", Medium "+(acc(r.byD[2])===null?"-":acc(r.byD[2])+"%")+", Hard "+(acc(r.byD[3])===null?"-":acc(r.byD[3])+"%"));
+  L.push("");
+  L.push("Chapters:");
+  D.rows.forEach(function(x){ L.push("  "+x.c.id+". "+x.c.t+": "+(x.o.n? x.p+"% ("+x.o.ok+"/"+x.o.n+"), "+x.lv.t : "not tested")); });
+  L.push("");
+  L.push("Next steps:");
+  D.recs.forEach(function(t){ L.push("  - "+t); });
+  return L.join("\n");
+}
+
+/* ============ MAIN RENDER ============ */
+function render(){
+  var st = me();
+  if(!st) S.view = "gate";
+  renderTop();
+  var h;
+  if(S.view==="gate") h = viewGate();
+  else if(S.view==="notes") h = viewNotes();
+  else if(S.view==="practice") h = viewPractice();
+  else h = viewReport();
+  $app.innerHTML = h;
+  if(S.view==="gate"){ var nm = document.getElementById("nm"); if(nm && !Object.keys(DB.students).length) nm.focus(); }
+}
+
+/* ============ ACTIONS ============ */
+function startStudent(raw){
+  var name = raw.trim().replace(/\s+/g," ").slice(0,40);
+  if(!name) return;
+  var key = name.toLowerCase();
+  if(!DB.students[key]) DB.students[key] = {name:name, created:Date.now(), attempts:[], read:{}};
+  DB.current = key; save();
+  S.view = "notes"; S.prac = null; S.q = ""; S.ch = 1;
+  render(); window.scrollTo(0,0);
+}
+function beginPractice(){
+  var P = S.prac;
+  var pool = shuffle(qPool(P.sel,P.diff));
+  if(P.count) pool = pool.slice(0,P.count);
+  if(!pool.length) return;
+  P.queue = pool.map(function(x){ return {qi:x.i, order:shuffle([0,1,2,3])}; });
+  P.i = 0; P.stage = "run"; P.answered = false; P.pick = null; P.results = [];
+  P.sid = "s"+Date.now(); P.t0 = Date.now();
+  render(); window.scrollTo(0,0);
+}
+function answer(oi){
+  var P = S.prac; if(P.answered) return;
+  var it = P.queue[P.i], q = QB[it.qi];
+  var ok = oi === q[4];
+  P.answered = true; P.pick = oi;
+  P.results.push({qi:it.qi, ok:ok});
+  me().attempts.push({t:Date.now(), s:P.sid, c:q[0], d:q[1], q:it.qi, ok:ok, ms:Date.now()-P.t0, pick:oi});
+  save(); render();
+}
+function act(a,b){
+  var st = me();
+  switch(a){
+    case "pick": startStudent(DB.students[b.dataset.k].name); break;
+    case "switch": DB.current = null; save(); S.view="gate"; S.prac=null; render(); break;
+    case "nav": S.view = b.dataset.v; S.confirmReset=false; if(S.view==="practice" && S.prac && S.prac.stage==="done") S.prac=null; render(); window.scrollTo(0,0); break;
+    case "chap": S.ch = +b.dataset.id; S.q=""; render(); window.scrollTo(0,0); break;
+    case "read": st.read[S.ch] = !st.read[S.ch]; save(); render(); break;
+    case "goto-notes": S.ch = +b.dataset.id; S.q=""; S.view="notes"; if(S.prac && S.prac.stage==="run"){ /* leave quiz state intact */ } render(); window.scrollTo(0,0); break;
+    case "prac-ch": S.prac = {stage:"setup", sel:[+b.dataset.id], diff:0, count:10}; S.view="practice"; render(); window.scrollTo(0,0); break;
+    case "pc": var id=+b.dataset.id, ix=S.prac.sel.indexOf(id); if(ix>-1) S.prac.sel.splice(ix,1); else S.prac.sel.push(id); render(); break;
+    case "pall": S.prac.sel = CH.map(function(c){return c.id;}); render(); break;
+    case "pnone": S.prac.sel = []; render(); break;
+    case "pweak":
+      var r = stats(st.attempts);
+      var w = CH.filter(function(c){return r.byCh[c.id].n>0;}).map(function(c){return {id:c.id,p:pct(r.byCh[c.id])};}).sort(function(a,b){return a.p-b.p;}).slice(0,3).map(function(x){return x.id;});
+      var unt = CH.filter(function(c){return r.byCh[c.id].n===0;}).map(function(c){return c.id;});
+      while(w.length<3 && unt.length) w.push(unt.shift());
+      S.prac.sel = w; render(); break;
+    case "pd": S.prac.diff = +b.dataset.v; render(); break;
+    case "pn": S.prac.count = +b.dataset.v; render(); break;
+    case "begin": beginPractice(); break;
+    case "opt": answer(+b.dataset.i); break;
+    case "next":
+      var P = S.prac;
+      if(P.i+1 >= P.queue.length){ P.stage = "done"; }
+      else { P.i++; P.answered=false; P.pick=null; P.t0=Date.now(); }
+      render(); window.scrollTo(0,0); break;
+    case "again": S.prac = null; render(); window.scrollTo(0,0); break;
+    case "print": try{ window.print(); }catch(e){} break;
+    case "copy":
+      var txt = reportText();
+      var done = function(){ S.copied = true; render(); setTimeout(function(){ S.copied=false; if(S.view==="report") render(); },2000); };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,function(){ fallbackCopy(txt); done(); }); }
+        else { fallbackCopy(txt); done(); }
+      }catch(e){ fallbackCopy(txt); done(); }
+      break;
+    case "reset":
+      if(!S.confirmReset){ S.confirmReset = true; render(); }
+      else { st.attempts = []; st.read = {}; S.confirmReset = false; save(); render(); window.scrollTo(0,0); }
+      break;
+  }
+}
+function fallbackCopy(t){
+  try{
+    var ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly","");
+    ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+  }catch(e){}
+}
+
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-a]");
+  if(b) act(b.dataset.a, b);
+});
+document.addEventListener("submit", function(e){
+  if(e.target.id === "nameform"){ e.preventDefault(); startStudent(document.getElementById("nm").value); }
+});
+document.addEventListener("input", function(e){
+  if(e.target.id === "search"){
+    S.q = e.target.value;
+    document.getElementById("nbody").innerHTML = notesBody();
+    var items = document.querySelectorAll(".chl");
+    for(var i=0;i<items.length;i++){ items[i].classList.remove("on"); }
+    if(!S.q.trim()){ render(); var s=document.getElementById("search"); if(s){ s.focus(); s.setSelectionRange(0,0); } }
+  }
+});
+document.addEventListener("change", function(e){
+  if(e.target.id === "chsel"){ S.ch = +e.target.value; S.q=""; render(); }
+});
+document.addEventListener("keydown", function(e){
+  if(S.view==="practice" && S.prac && S.prac.stage==="run" && !S.prac.answered && /^[1-4]$/.test(e.key) && !e.metaKey && !e.ctrlKey){
+    var it = S.prac.queue[S.prac.i];
+    answer(it.order[+e.key-1]);
+  }
+});
+
+load();
+renderWarn();
+if(DB.current && DB.students[DB.current]) S.view = "notes";
+render();
+</script>
+</body>
+</html>
